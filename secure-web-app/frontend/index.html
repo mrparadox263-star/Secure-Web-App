@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A secure task application demonstrating authentication, authorization, and safe data access." />
+    <title>Vault Tasks</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Security-first starter</p>
+          <h1>Vault Tasks</h1>
+          <p class="subtitle">A compact reference app for password hashing, cookie-based JWT sessions, OAuth, role checks, CSRF defense, and parameterized database access.</p>
+        </div>
+        <div class="security-badge">● Protected session</div>
+      </header>
+
+      <div class="grid">
+        <section class="card" aria-labelledby="auth-title">
+          <div class="card-inner">
+            <h2 id="auth-title">Access your vault</h2>
+            <p class="hint">Use a strong 12+ character password. Secrets never enter the browser bundle.</p>
+            <div class="tabs" role="tablist" aria-label="Authentication mode">
+              <button class="tab" id="login-tab" role="tab" aria-selected="true">Log in</button>
+              <button class="tab" id="register-tab" role="tab" aria-selected="false">Register</button>
+            </div>
+            <form class="form" id="auth-form">
+              <label class="register-only hidden">Username<input name="username" autocomplete="username" minlength="3" maxlength="80" /></label>
+              <label class="login-only">Email or username<input name="identifier" autocomplete="username" required /></label>
+              <label class="register-only hidden">Email<input name="email" type="email" autocomplete="email" /></label>
+              <label>Password<input name="password" type="password" autocomplete="current-password" minlength="12" required /></label>
+              <button class="primary" id="auth-submit">Log in securely</button>
+            </form>
+            <div class="divider">or use OAuth</div>
+            <div class="oauth">
+              <a class="secondary" href="/auth/oauth/google">Google</a>
+              <a class="secondary" href="/auth/oauth/github">GitHub</a>
+            </div>
+            <p class="status" id="auth-status" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="tasks-title">
+          <div class="workspace-head">
+            <div><h2 id="tasks-title">Private workspace</h2><div class="user" id="user-label">Sign in to load your tasks</div></div>
+            <button class="secondary hidden" id="logout">Log out</button>
+          </div>
+          <form class="task-form" id="task-form">
+            <input name="title" aria-label="Task title" placeholder="Add a private task…" maxlength="200" required disabled />
+            <button class="primary" disabled>Add task</button>
+          </form>
+          <ul class="tasks" id="tasks"><li class="empty">Your authorized records will appear here.</li></ul>
+        </section>
+      </div>
+      <p class="footnote">Educational starter — complete the production checklist in the README before deployment.</p>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
