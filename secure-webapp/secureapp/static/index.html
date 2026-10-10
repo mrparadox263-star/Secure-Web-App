@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secure Notes</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Secure Notes</div>
+    <div class="session" id="session" hidden>
+      <span id="current-user"></span>
+      <button type="button" id="logout-btn" class="btn ghost">Log out</button>
+    </div>
+  </header>
+
+  <main id="auth-view" class="auth-view" hidden>
+    <div class="card auth-card">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" id="tab-login" class="tab active" aria-selected="true" aria-controls="auth-form">Log in</button>
+        <button type="button" role="tab" id="tab-register" class="tab" aria-selected="false" aria-controls="auth-form">Register</button>
+      </div>
+      <form id="auth-form" novalidate>
+        <label>
+          Username
+          <input name="username" id="auth-username" autocomplete="username" required minlength="3" maxlength="32" pattern="[A-Za-z0-9_]+">
+        </label>
+        <label>
+          Password
+          <input name="password" id="auth-password" type="password" autocomplete="current-password" required minlength="12" maxlength="128">
+        </label>
+        <p class="hint" id="auth-hint" hidden>Username: 3-32 letters, digits or underscores. Password: at least 12 characters.</p>
+        <p class="error" id="auth-error" role="alert" hidden></p>
+        <button type="submit" class="btn primary" id="auth-submit">Log in</button>
+      </form>
+    </div>
+  </main>
+
+  <main id="app-view" class="app-view" hidden>
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <input type="search" id="search" placeholder="Search notes" aria-label="Search notes">
+        <button type="button" id="new-btn" class="btn primary">New note</button>
+      </div>
+      <ul id="note-list" class="note-list" aria-label="Notes"></ul>
+      <p class="muted" id="list-empty" hidden>No notes found.</p>
+    </aside>
+
+    <section class="editor-pane">
+      <div id="editor-empty" class="editor-empty" hidden>
+        <p>Select a note or create a new one.</p>
+      </div>
+      <form id="note-form" class="editor" novalidate hidden>
+        <input id="note-title" class="title-input" placeholder="Title" maxlength="200" required aria-label="Note title">
+        <textarea id="note-body" placeholder="Start writing..." maxlength="10000" aria-label="Note body"></textarea>
+        <div class="editor-meta">
+          <span id="note-meta" class="muted"></span>
+          <span id="char-count" class="muted"></span>
+        </div>
+        <p class="error" id="note-error" role="alert" hidden></p>
+        <div class="editor-actions">
+          <button type="submit" class="btn primary" id="save-btn">Save</button>
+          <button type="button" class="btn danger" id="delete-btn">Delete</button>
+          <span id="status" class="muted" aria-live="polite"></span>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
